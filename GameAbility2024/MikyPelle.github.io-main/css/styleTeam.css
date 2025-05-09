@@ -1,0 +1,18 @@
+body{
+    background-color: black;
+}
+body p{
+    float: left;
+    margin-left: 37%;
+    color: white;
+    font-size: 1.2em;
+    font-family: Helvetica, sans-serif;
+}
+body h1{
+    float: left;
+    margin-left: 45.5%;
+    margin-top: 6%;
+    color: white;
+    font-size: 1.2em;
+    font-family: Helvetica, sans-serif;
+}
