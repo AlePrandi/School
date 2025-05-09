@@ -1,0 +1,93 @@
+/* Tema Scuro Moderno */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 500px;
+    width: 90%;
+    background: #1e1e1e;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+h1, h2 {
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    color: #b0b0b0;
+    margin-bottom: 5px;
+}
+
+select, input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #333;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+    transition: border 0.3s ease, background 0.3s ease;
+}
+
+select:focus, input:focus {
+    border-color: #4caf50;
+    background-color: #333;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #388e3c;
+    transform: scale(1.05);
+}
+
+.result {
+    margin-top: 20px;
+    text-align: center;
+    background-color: #263238;
+    padding: 15px;
+    border: 1px solid #4caf50;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #a5d6a7;
+}
+
+.price {
+    font-size: 24px;
+    color: #81c784;
+    font-weight: bold;
+}

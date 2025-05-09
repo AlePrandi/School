@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Concessionaria Gino</title>
+    <link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Quanto vale la tua fiat 500 ?</h1>
+        <form method="post">
+            <label for="modello">Modello:</label>
+            <select name="modello" id="modello">
+                <option value="pop">pop</option>
+                <option value="lounge">lounge</option>
+                <option value="sport">sport</option>
+                <option value="star">star</option>
+            </select>
+
+            <label for="trasmissione">Trasmissione:</label>
+            <select name="trasmissione" id="trasmissione">
+                <option value="manuale">Manuale</option>
+                <option value="automatica">Automatica</option>
+            </select>
+
+            <label for="proprietari">Proprietari Precedenti:</label>
+            <select name="proprietari" id="proprietari">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+
+            <label for="potenza">Potenza Motore (CV):</label>
+            <input type="number" name="potenza" id="potenza" required>
+
+            <label for="eta">Età in Giorni:</label>
+            <input type="number" name="eta" id="eta" required>
+
+            <label for="km">Chilometri Percorsi:</label>
+            <input type="number" name="km" id="km" required>
+
+            <label for="lat">Latitudine:</label>
+            <input type="text" name="lat" id="lat" required>
+
+            <label for="lon">Longitudine:</label>
+            <input type="text" name="lon" id="lon" required>
+
+            <button type="submit">Calcola Prezzo</button>
+        </form>
+
+        {% if prezzo is not none %}
+        <div class="result">
+            <h2>Prezzo Consigliato</h2>
+            <p class="price">€ {{ prezzo }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
