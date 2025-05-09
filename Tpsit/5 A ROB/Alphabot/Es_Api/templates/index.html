@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #282c34;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            flex-direction: column;
+        }
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .controller {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
+            gap: 10px;
+        }
+        .controller button {
+            width: 60px;
+            height: 60px;
+            background-color: #61dafb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .controller button:hover {
+            background-color: #21a1f1;
+        }
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #ff4b5c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .logout-button:hover {
+            background-color: #ff1f3a;
+        }
+        .sensor-panel {
+            position: absolute;
+            top: 20px;
+            left: 40px;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            min-width: 180px;
+        }
+        .sensor-panel h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #61dafb;
+            text-align: center;
+        }
+        .sensor-status {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+        }
+        .sensor-indicators {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .sensor-indicator {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sensor-led {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-bottom: 5px;
+        }
+        .sensor-led.off {
+            background-color: #4CAF50;
+            box-shadow: 0 0 10px #4CAF50;
+        }
+        .sensor-led.on {
+            background-color: #ff0000;
+            box-shadow: 0 0 10px #ff0000;
+        }
+        .sensor-label {
+            font-size: 12px;
+            color: #aaa;
+        }
+        .speed-control {
+            position: absolute;
+            left: 30px;
+            top: 200px;
+            margin: 5px 0;
+            width: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .speed-label {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #aaa;
+        }
+        .speed-value {
+            font-size: 16px;
+            font-weight: bold;
+            color: #61dafb;
+            margin-top: 5px;
+        }
+        .speed-slider {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: #555;
+            outline: none;
+        }
+        .speed-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #61dafb;
+            cursor: pointer;
+        }
+        .speed-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #61dafb;
+            cursor: pointer;
+        }
+    </style>
+    <title>Index Page</title>
+</head>
+<body>
+    <form action="/logout" method="post">
+        <button type="submit" class="logout-button">Logout</button>
+    </form>
+    
+    <div class="sensor-panel">
+        <h3>Stato Sensori di Linea</h3>
+        <div class="sensor-status" id="sensor-status">--</div>
+        <div class="sensor-indicators">
+            <div class="sensor-indicator">
+                <div class="sensor-led" id="left-led"></div>
+                <div class="sensor-label">Sinistro</div>
+            </div>
+            <div class="sensor-indicator">
+                <div class="sensor-led" id="right-led"></div>
+                <div class="sensor-label">Destro</div>
+            </div>
+        </div>
+    </div>
+    
+    <h1>Ciao {{username}}!</h1>
+    
+    <div class="speed-control">
+        <div class="speed-label">
+            <span>Velocità: </span>
+            <span class="speed-value" id="speed-value">60%</span>
+        </div>
+        <input type="range" min="20" max="100" value="60" class="speed-slider" id="speed-slider">
+        <div class="speed-label">
+            <span>Lento</span>
+            <span>Veloce</span>
+        </div>
+    </div>
+    
+    <div class="controller">
+        <div></div>
+        <button data-key="w">W</button>
+        <div></div>
+        <button data-key="a">A</button>
+        <button data-key="stop">Stop</button>
+        <button data-key="d">D</button>
+        <div></div>
+        <button data-key="s">S</button>
+        <div></div>
+    </div>
+</body>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const keys = ['w', 'a', 's', 'd'];
+    const sensorStatus = document.getElementById('sensor-status');
+    const leftLed = document.getElementById('left-led');
+    const rightLed = document.getElementById('right-led');
+    const speedSlider = document.getElementById('speed-slider');
+    const speedValue = document.getElementById('speed-value');
+    
+    // Mappa tra tasti e ID dei movimenti
+    const keyToMovementMap = {
+        'w': '1',  // avanti
+        's': '2',  // indietro
+        'a': '4',  // sinistra
+        'd': '3',  // destra
+        'stop': '0' // stop
+    };
+    
+    // Mappa per combinazioni di tasti (per movimenti combinati)
+    const combinedMovements = {
+        'w+d': '5', // avanti + destra
+        'w+a': '6', // avanti + sinistra
+        's+d': '7', // indietro + destra
+        's+a': '8'  // indietro + sinistra
+    };
+    
+    // Traccia quali tasti sono attualmente premuti
+    const pressedKeys = new Set();
+    
+    // Inizializza il valore della velocità
+    let currentSpeed = speedSlider.value;
+    speedValue.textContent = `${currentSpeed}%`;
+    
+    // Funzione per inviare il comando di movimento attraverso la nuova API
+    const sendMovementCommand = (movementId, state) => {
+        fetch('/api/movement', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ movement_id: movementId, state: state })
+        }).then(response => response.json())
+          .then(data => {
+              console.log(`Movimento inviato: ${data.command} (ID: ${movementId}, stato: ${state})`);
+          }).catch(error => {
+              console.error(`Errore durante l'invio del movimento: ${error}`);
+          });
+    };
+    
+    // Funzione per determinare il movimento corrente in base ai tasti premuti
+    const determineMovement = () => {
+        if (pressedKeys.size === 0) {
+            return '0'; // Stop
+        }
+        
+        // Controlla le combinazioni per movimenti speciali
+        if (pressedKeys.has('w') && pressedKeys.has('d')) {
+            return '5'; // avanti + destra
+        }
+        if (pressedKeys.has('w') && pressedKeys.has('a')) {
+            return '6'; // avanti + sinistra
+        }
+        if (pressedKeys.has('s') && pressedKeys.has('d')) {
+            return '7'; // indietro + destra
+        }
+        if (pressedKeys.has('s') && pressedKeys.has('a')) {
+            return '8'; // indietro + sinistra
+        }
+        
+        // Priorità per i movimenti base
+        if (pressedKeys.has('w')) return '1'; // avanti
+        if (pressedKeys.has('s')) return '2'; // indietro
+        if (pressedKeys.has('d')) return '3'; // destra
+        if (pressedKeys.has('a')) return '4'; // sinistra
+        
+        return '0'; // default: stop
+    };
+    
+    // Funzione per aggiornare il movimento corrente
+    const updateMovement = () => {
+        const movementId = determineMovement();
+        sendMovementCommand(movementId, true);
+    };
+    
+    // Gestione dello slider per la velocità
+    speedSlider.addEventListener('input', () => {
+        currentSpeed = speedSlider.value;
+        speedValue.textContent = `${currentSpeed}%`;
+        
+        // Invia il nuovo valore di velocità al server
+        fetch('/set_speed', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ speed: parseInt(currentSpeed) })
+        }).then(response => {
+            console.log(`Velocità aggiornata: ${currentSpeed}%`);
+        }).catch(error => {
+            console.error(`Errore durante l'aggiornamento della velocità: ${error}`);
+        });
+    });
+    
+    // Funzione per aggiornare lo stato dei sensori
+    const updateSensors = () => {
+        fetch('/api/sensors/line', {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Aggiorna il testo dello stato
+                sensorStatus.textContent = data.data.status;
+                
+                // Aggiorna lo stato visivo dei LED
+                leftLed.className = data.data.left === 0 ? 'sensor-led on' : 'sensor-led off';
+                rightLed.className = data.data.right === 0 ? 'sensor-led on' : 'sensor-led off';
+            } else {
+                sensorStatus.textContent = "Errore";
+                leftLed.className = 'sensor-led off';
+                rightLed.className = 'sensor-led off';
+            }
+        })
+        .catch(error => {
+            console.error('Errore nel recupero dei dati dei sensori:', error);
+            sensorStatus.textContent = "Errore di connessione";
+            leftLed.className = 'sensor-led off';
+            rightLed.className = 'sensor-led off';
+        });
+    };
+    
+    // Aggiornare lo stato dei sensori ogni 200ms
+    setInterval(updateSensors, 200);
+    
+    // Gestione degli eventi della tastiera fisica
+    window.addEventListener('keydown', (e) => {
+        const key = e.key.toLowerCase();
+        if (keys.includes(key)) {
+            pressedKeys.add(key);
+            updateMovement();
+            e.preventDefault(); // Previene lo scroll della pagina con i tasti freccia
+        }
+    });
+    
+    window.addEventListener('keyup', (e) => {
+        const key = e.key.toLowerCase();
+        if (keys.includes(key)) {
+            pressedKeys.delete(key);
+            updateMovement();
+        }
+    });
+    
+    // Gestione click sui pulsanti virtuali
+    document.querySelectorAll('.controller button').forEach(button => {
+        button.addEventListener('mousedown', () => {
+            const key = button.dataset.key;
+            if (key && key !== 'stop') {
+                pressedKeys.add(key);
+            } else if (key === 'stop') {
+                pressedKeys.clear();
+            }
+            updateMovement();
+        });
+        
+        button.addEventListener('mouseup', () => {
+            const key = button.dataset.key;
+            if (key && key !== 'stop') {
+                pressedKeys.delete(key);
+                updateMovement();
+            }
+        });
+        
+        button.addEventListener('mouseleave', () => {
+            const key = button.dataset.key;
+            if (key && key !== 'stop') {
+                pressedKeys.delete(key);
+                updateMovement();
+            }
+        });
+    });
+    
+    // Funzione per fermare tutti i movimenti quando viene rilasciato il mouse ovunque
+    const stopAllKeys = () => {
+        pressedKeys.clear();
+        sendMovementCommand('0', true);
+    };
+    
+    window.addEventListener('mouseup', stopAllKeys);
+    
+    // Funzione per gestire la perdita di focus della finestra
+    window.addEventListener('blur', stopAllKeys);
+});
+</script>
+</html>
