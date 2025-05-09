@@ -1,0 +1,27 @@
+Correzione verifica
+
+CREATE TABLE Romanzi (
+    	CodR INTEGER AUTOINCREMENT,
+    	Titolo VARCHAR(30) NOT NULL CHECK("Titolo" REGEXP '^[A-Z][a-zA-Z0-9 -_#@?!]+$;:'),
+   	CodAut INTEGER NOT NULL,
+    	Anno INTEGER NOT NULL CHECK("Anno" < srtftime("%y", currentdate)),
+    	Prezzo DECIMAL(10,2) NOT NULL CHECK(Prezzo > 0),
+    	Genere VARCHAR(20) NOT NULL CHECK (Genere IN("giallo", "rosa", "horror", "storico")),
+    	PRIMARY KEY("CodR"),
+    	FOREIGN KEY("CodAut") REFERENCES Autori("CodA") ON DELETE RESTRICT ON UPDATE CASCADE
+);
+
+CREATE TABLE Autori(
+	codAut INTEGER AUTOINCREMENT,
+	NomeAut VARCHAR(20) NOT NULL CHECK("NomeAut" REGEXP '^[A-Z][a-z]+$'),
+	CognAut VARCHAR(20) NOT NULL CHECK("CognAut" REGEXP '^[A-Z][a-z]+$'),
+	NatoIl DATE NOT NULL CHECK("NatoIl" < CURRENTDATE),
+	MortoIl DATE CHECK("MortoIl" > "NatoIl"),
+	Nazione VARCHAR(5) CHECK("Nazione" IN ("ITA","UK","USA","FR","ESP")),
+	PRIMARY KEY ("codAut")
+);
+
+CREATE VIEW Femme AS 
+SELECT Titolo, NomeP
+FROM Autori, Romanzi, Personaggi 
+WHERE 

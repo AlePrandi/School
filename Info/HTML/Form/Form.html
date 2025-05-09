@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Alessandro Prandi">
+        <meta name = "keywords">
+        <title>Form</title>
+    </head>
+    <body>
+        <h1>Form</h1>
+        <form>
+            <label for="fname">Nome:</label><br>
+            <input type="text" id="nome" name="nome"><br>
+            <label for="lname">Cognome:</label><br>
+            <input type="text" id="cognome" name="cognome">
+          </form>
+          
+          <div id="Anagrafe" name="Anagrafe">
+
+            <form>
+                <label for="luog">Luogo di nascita:</label><br>
+                <input type="text" id="LuogoDiNascita" name="LuogoDiNascita"><br>
+                <label for="data">Data di anscita:</label><br>
+                <input type="text" id="DataDiNascita" name="DataDiNascita"><br>
+                <label for="cf">Codice fiscale:</label><br>
+                <input type="text" id="cf" name="cf"><br>
+                <label for="indirizzo">Indirizzo:</label><br>
+                <input type="text" id="Indirizzo" name="Indirizzo"><br>
+                <label for="comune">Comune:</label><br>
+                <input type="text" id="Comune" name="Comune"><br>
+                <label for="sesso">Sesso:</label><br>
+                <input type="text" id="Sesso" name="Sesso">
+                <button id="Controllo" name="Controllo">Controllo età</button>
+              </form>
+          </div>
+          <div id="Contatti">
+            <form>
+                <label for="cell">Cellulare:</label><br>
+                <input type="text" id="Cellulare" name="Cellulare"><br>
+                <label for="email">Email:</label><br>
+                <input type="email" id="Email" name="Email">
+              </form>
+          </div>
+          <div id="Presa visione">
+            <form>
+                <input type="checkbox" id="privacy" name="privacy">
+                <label for="privacy"> Privacy</label><br>
+              </form>
+          </div>
+    </body>
+</html>
+<script>
+    const verificaButton = document.getElementById("Controllo");
+    const dataNascitaInput = document.getElementById("DataDiNascita");
+    const risultatoDiv = document.getElementById("risultato");
+    verificaButton.addEventListener("click", function(e) {
+        e.preventDefault(); // Evita il comportamento predefinito del pulsante
+        const dataNascita = new Date(dataNascitaInput.value);
+        const oggi = new Date();
+        const anniDiff = oggi.getFullYear() - dataNascita.getFullYear();
+        if (oggi.getMonth() < dataNascita.getMonth() || (oggi.getMonth() === dataNascita.getMonth() && oggi.getDate() < dataNascita.getDate())) {
+            anniDiff--;
+        }
+        if (anniDiff >= 18) {
+            alert("è maggiorenne")
+        } else {
+            alert("è minorenne")
+        }
+    });
+</script>

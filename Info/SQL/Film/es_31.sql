@@ -1,0 +1,8 @@
+SELECT F.Titolo
+FROM FILM F
+WHERE F.CodFilm IN (
+    SELECT DISTINCT P.CodFilm
+    FROM PROIEZIONI P
+    GROUP BY P.CodFilm
+    HAVING MIN(P.Incasso) > 500
+)

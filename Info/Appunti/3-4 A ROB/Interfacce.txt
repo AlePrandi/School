@@ -1,0 +1,14 @@
+L'interfaccia è una classe astratta che contiene solo metodi pubblici e attributi final static
+
+si dichiara public interface 
+invece che public class
+
+si implementa con una classe concreta  es. [public] class C implement int [,int2]
+
+una classe può ereditare più interfacce
+
+es. Cavallo extends Animali implemets MezziDiTrasporto
+
+UML 
+
+<<interface>> Nome

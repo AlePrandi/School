@@ -1,0 +1,7 @@
+la quotazione minore del giorno 0 e' stata KettImport con un valore di 90.00 
+la quotazione minore del giorno 1 e' stata Grassi con un valore di 92.00 
+la quotazione minore del giorno 2 e' stata ASDF con un valore di 96.00 
+la quotazione minore del giorno 3 e' stata ACME con un valore di 88.00 
+la quotazione minore del giorno 4 e' stata ACME con un valore di 60.00 
+la quotazione minore del giorno 5 e' stata ASDF con un valore di 80.00 
+la quotazione minore del giorno 6 e' stata ASDF con un valore di 99.00 

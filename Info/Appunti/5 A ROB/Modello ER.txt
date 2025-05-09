@@ -1,0 +1,40 @@
+La relazione è la tabella, 
+l'entità relazionale o associazione è un legame che stabilisce un'interazione tra entità,
+
+ogni studente risiede in una città ma non tutte le città hanno uno studente che ci vive,
+la prima è una relazione obbligatoria, la seconda è una opzionale.
+oltre alle righe è presente il ruolo.
+es. OGNI (linea continua) studente DEVE (linea continua) risiedere (associazione) in 1 (cardinalità) città
+es. OGNI città PUO' (linea tratteggiata) essere residenza di UNO O PIU'(n elementi) studenti
+
+GRADO ASSOCIOZIANI
+
+rappresenta il numero di entità che mette in relazione un'associazione, solitamente non devono essere più di  2
+
+CARDINALITA'
+
+-	associazione 1:N o semplice, ogni istanza della prima entità corrisponde a zero, una o più istanze 	della seconda, la seconda corrisponde o a zero o a 1 della prima
+
+- 	associazione 1:1 o biunivoca, ogni istanza della prima ha solo una sola istanza della seconda e 	viceversa
+
+-	associazione N:N o N:M o complessa, ogni istanza della prima corrisponde a zero, una o più istanze 	della seconda e viceversa 
+
+DIREZIONE
+
+solitamente non si scrive il ruolo ma si mette il verbo riferito all'entità forte, quella principale
+
+nelle associazioni:
+
+- 	1:1 è indifferente
+-	1:N si mette dove c'è l'1
+- 	N:N è indifferente
+
+un'associazione RICORSIVA è quando un'entità è associata a se stessa tramite ruoli diversi, in questo caso è obbligatorio specificare i ruoli
+
+aggregazione stretta se a ogni istanza DEVE corrispondere una associazione all'entità contenitore
+
+IsA <-- non si mettono i numeri, è una generalizzazione
+
+EREDITARIETA'
+
+generalizzazione totale se un'istanza padre è istanza di almeno una delle figlie

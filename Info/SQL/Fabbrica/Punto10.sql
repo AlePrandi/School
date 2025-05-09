@@ -1,0 +1,3 @@
+SELECT *
+FROM sedeA
+WHERE codR = 1

@@ -1,0 +1,227 @@
+int diagPrinc(int mat[][DIM], int nr) {
+    int somma;
+    for(int r = 0; r < nr;r ++){
+        somma = somma + mat[r][r];
+    }
+return somma;
+}
+
+int diagSec(int mat[][DIM], int nr, int nc) {
+    int somma;
+    for(int r = 0; r < nr;r++)
+    for(int c = nc - 1; c > nc; c--){
+        somma = somma + mat[r][c];
+    return somma;
+}
+}
+
+bool eTriang(int n1,int n2,int n3) {
+    bool triangolo = false;
+    if(n1 > 0 && n2 > 0 && n3 > 0) {
+        if(n1 < n2 + n3) {
+            if(n2 < n1 + n3) {
+                if(n3 < n1 + n2) {
+                    triangolo = true;
+                }
+            }
+        }
+    }
+    return triangolo;
+}
+
+bool isIsocele(int n1,int n2,int n3) {
+    bool isoscele = false;
+    if(n1 == n2 || n1 == n3 || n2 == n3) {
+        isoscele = true;
+    }
+    return isoscele;
+}
+
+float potenza(float x){
+x = x * x;
+return x;
+}
+
+float ipotenusa(float cateto1, float cateto2){
+ float ris;
+ ris = sqrt(potenza(cateto1) + potenza(cateto2));
+ return ris;
+}
+
+void scambio(int *n1, int *n2) {
+    int z;
+    z = *n1;
+    *n1 = *n2;
+    *n2 = z;
+}
+
+void CarCas(int mat[][DIM],int nr, int nc,int min, int max) {
+    srand(time(NULL));
+    for(int r = 0; r < nr; r++)
+        for(int c = 0; c < nc; c++) {
+            mat[r][c] = MIN + rand() % (MAX + 1 - MIN);
+        }
+}
+
+void stampa(int mat[][DIM], int nr, int nc) {
+    for (int r = 0; r < nr; r++)
+        for(int c = 0; c < nc; c++) {
+            printf("%d\t", mat[r][c]);
+        }
+        printf("\n");
+}
+
+void CaricaMat(int mat[][LUNG], int r, int c) {
+    for(int nr = 0; nr < r; nr++) {
+        for(int nc = 0; nc < c; nc++) {
+            printf("inserisci un numero[%d][%d]: ", nr + 1,nc + 1);
+            scanf("%d", &mat[nr][nc]);
+        }
+    }
+}
+
+void CaricaVett(int vett[MAX]){
+for(int k = 0; k < MAX; k++){
+    printf("inserire un numero[%d]: ",k);
+    scanf("%d", &vett[k]);
+}
+}
+
+float Min(float vett[], int n) {
+    float minimo;
+    for (int i = 0; i < n; i) {
+        minimo = vett[0];
+        if (vett[i] < minimo) {
+            minimo = vett[i];
+        }
+    }
+    return minimo;
+}
+
+float Max(float vett[], int n) {
+    float massimo;
+    for (int i = 0; i < n; i) {
+        massimo = vett[0];
+        if (massimo < vett[i]) {
+            massimo = vett[i];
+        }
+    }
+    return massimo;
+}
+
+void CambiaMaius(char str[]) {
+    int k;
+    for (k = 0; str[k] != '\0'; k++) {
+        if (str[k] >= 'a' && str[k] <= 'z'){
+        str[k] = str[k] - CONV;
+        }
+    }
+    str[k] = '\0';
+}
+
+void isVocali(char s[]) {
+    int k, j;
+    j = 0;
+    for (k = 0; s[k] != '\0'; k++) {
+        if (s[k] != 'a' && s[k] != 'e' && s[k] != 'i' && s[k] != 'o' 
+        && s[k] != 'u' && s[k] != 'A' && s[k] != 'E' && s[k] != 'I' 
+        && s[k] != 'O' && s[k] != 'U') {
+            s[j++] = s[k];
+        }
+    }
+    s[j] = '\0';
+}
+
+void stampaMat(int mat[][LUNG], int r, int c) {
+    printf("\n");
+    for(int nr = 0; nr < r; nr++) {
+        for(int nc = 0; nc < c; nc++) {
+            printf("%d ", mat[nr][nc]);
+        }
+        printf("\n");
+    }
+}
+
+void scambioStr(char s1[],char s2[]){
+    char nome[LUNG];
+    strcpy(nome, s1);
+    strcpy(s1, s2);
+    strcpy(s2, nome);
+}
+
+void bubbleMat(char mat[][LUNG], int nr) {
+    int k,sup, sca;
+    sup = nr - 1;
+    while(sup > 0) {
+        sca = 0;
+        for (k = 0; k < sup; k++) {
+            if (strcmp(mat[k], mat[k + 1]) > 0) {
+                scambio(mat[k], mat[k + 1]);
+                sca = k;
+            }
+        }
+        sup = sca;
+    }
+}
+
+void tabellina(int num, int vett[MAX]){
+for(int k = 0; k < MAX;k ++){
+    vett[k] = num * k;
+}
+}
+
+int menu() {
+    int scelta;
+    printf("\n0 = Esci\n");
+    printf("1 = \n");
+    printf("2 =\n");
+    printf("3 = \n");
+    printf("scelta: ");
+    scanf("%d", &scelta);
+return scelta;
+}
+
+ do {
+        scelta = menu();
+
+        switch(scelta) {
+case 0:
+
+}
+}while(scelta != 0);
+return scelta;
+
+
+int main() {
+    FILE *fp;
+    int x;
+    int cont = 0;
+    int vett[DIM];
+    int k = 0;
+
+
+    fp = fopen("vettore.txt", "r");
+    if(fp == NULL) {
+        printf("file non presente");
+        fp = fopen("vettore.txt", "w");
+    } else {
+        while(fscanf(fp, "%d", &x)!= EOF) {
+            vett[cont]=x;
+            cont++;
+        }
+    }
+    fclose(fp);
+    for(int j = 0; j < cont; j++) {
+        printf("%d ", vett[j]);
+    }
+}
+
+int chiediDim(int dim_max, char msg[]) {
+    int dim;
+    printf("%s", msg);
+    do {
+        printf(" tra [0 e %d] ", dim_max);
+        scanf("%d", &dim);
+    } while (dim < 0 || dim > dim_max);
+    return dim;
+}

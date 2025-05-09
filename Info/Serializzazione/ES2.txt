@@ -1,0 +1,13 @@
+public class Studente {
+    private String nome;
+    private String cognome;
+    private int eta;
+    private int voto;
+
+    public Studente(String nome, String cognome, int eta, int voto) {
+        this.nome = nome;
+        this.cognome = cognome;
+        this.eta = eta;
+        this.voto = voto;
+    }
+}

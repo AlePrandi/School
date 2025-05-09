@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CocktailDB</title>
+
+    <style>
+        #cardCocktail {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            margin-top: 100px;
+            margin-left: 50px;
+            margin-right: 50px;
+            width: 250px;
+            height: 350px;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <form id="searchForm">
+            <label>Cocktail:
+                <select id="nomecocktail">
+                </select>
+            </label><br>
+            <input type="submit" id="fsubmitcercacocktail" value="Cerca">
+        </form>
+    </div>
+
+    <div id="cardCocktail"> </div>
+
+    <script>
+        const cerca = document.getElementById("fsubmitcercacocktail");
+        const nomecocktail = document.getElementById("nomecocktail");
+        const searchForm = document.getElementById("searchForm");
+
+        const url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?";
+
+        function fetchCocktails() {
+            let fetchurl = url + "f=a"
+            fetch(fetchurl)
+                .then(response => response.json())
+                .then(dati => {
+                    if (dati.drinks) {
+                        dati.drinks.forEach(riga => {
+                            const option = document.createElement('option');
+                            option.value = riga.strDrink;
+                            option.textContent = riga.strDrink;
+                            nomecocktail.appendChild(option);
+                        });
+                    }
+                });
+        }
+
+        window.onload = fetchCocktails; // popola la select con tutti gli elementi
+
+        searchForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let nome = nomecocktail.value;
+            if (nome) {
+                let cocktailurl = url + "s=" + nome;
+
+                clearForClass("card");
+
+                let cardCocktail = document.getElementById("cardCocktail");
+
+                fetch(cocktailurl)
+                    .then(response => response.json())
+                    .then(dati => {
+                        if (dati.drinks) {
+                            console.log(dati);
+                            dati.drinks.forEach(riga => {
+                                const divCardCocktail = document.createElement('div');
+                                divCardCocktail.innerHTML = `<div class="card"><img src="${riga.strDrinkThumb}" alt="${riga.strDrink}" style="width:100%"><div class="container"><h4><b>${riga.strDrink}</b></h4><p>${riga.strInstructionsIT}</p></div></div>`;
+                                cardCocktail.appendChild(divCardCocktail);
+                            });
+                        } else {
+                            console.log("Nessun drink trovato");
+                            const divCardCocktail = document.createElement('div');
+                            divCardCocktail.innerHTML = `<div class="card"><div class="container"><h4><b>Nessun drink trovato</b></h4></div></div>`;
+                            cardCocktail.appendChild(divCardCocktail);
+                        }
+                    });
+            } else {
+                console.log("Inserisci un nome di cocktail da cercare");
+            }
+        });
+
+        function clearForClass(className) {
+            const elements = Array.from(document.getElementsByClassName(className));
+            elements.forEach(element => {
+                element.parentNode.removeChild(element);
+            });
+        }
+    </script>
+</body>
+
+</html>

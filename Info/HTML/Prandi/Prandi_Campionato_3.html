@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prandi_Campionato_3</title>
+</head>
+
+<body>
+
+    <div id="campDin"></div>
+    <!-- creo due pulsanti per gestire le giornate-->
+    <input type="submit" id="fsubmit1" value="1^ Giornata">
+    <input type="submit" id="fsubmit2" value="2^ Giornata">
+    <div id="campionatoSquadra"></div><br>
+
+</body>
+
+</html>
+
+<script>
+
+    const campDin = document.getElementById("campDin");
+    const giornataDin1 = document.getElementById("fsubmit1");
+    const giornataDin2 = document.getElementById("fsubmit2");
+    const campionatoSquadra = document.getElementById("campionatoSquadra");
+
+    const urlCamp = "./campionato20_21.json"
+
+    fetch(urlCamp)
+        .then(response => response.json())
+        .then(dati => {
+            const datiJson = dati;
+            console.log(datiJson)
+            const divcampDin = document.createElement('div');
+            divcampDin.innerHTML = `<h1>Campionato: ${datiJson.name}</h1>`;
+            campDin.appendChild(divcampDin);
+
+        });
+
+    // mi servono due addeventListener in base al valore  
+    giornataDin1.addEventListener('click', function (e) {
+        e.preventDefault();
+        clearForClass("campionatoSquadra");
+        let giornata = giornataDin1.value;
+        fetch(urlCamp)
+            .then(response => response.json())
+            .then(dati => {
+                const datiJsonCampionato = dati;
+                console.log(datiJsonCampionato)
+
+                datiJsonCampionato.matches.forEach(riga => {
+                    if (riga.round == giornata) {
+                        // creo il child dinamico con le squadre della prima giornata
+                        const divCampionatoSquadra = document.createElement('div');
+                        divCampionatoSquadra.innerHTML = `
+                        <div class=campionatoSquadra>
+                            <p>${riga.team1}: ${riga.score.ft[0]}<br>
+                                ${riga.team2}: ${riga.score.ft[1]}</p>
+                        </div>
+                        `;
+                        campionatoSquadra.appendChild(divCampionatoSquadra);
+                    }
+                });
+            });
+    });
+
+    giornataDin2.addEventListener('click', function (e) {
+        e.preventDefault();
+        clearForClass("campionatoSquadra");
+        let giornata = giornataDin2.value;
+        fetch(urlCamp)
+            .then(response => response.json())
+            .then(dati => {
+                const datiJsonCampionato = dati;
+                console.log(datiJsonCampionato)
+
+                datiJsonCampionato.matches.forEach(riga => {
+                    if (riga.round == giornata) {
+                        // creo il child dinamico con le squadre della seconda giornata
+                        const divCampionatoSquadra = document.createElement('div');
+                        divCampionatoSquadra.innerHTML = `
+                        <div class=campionatoSquadra>
+                            <p>${riga.team1}: ${riga.score.ft[0]}<br>
+                                ${riga.team2}: ${riga.score.ft[1]}</p>
+                            <br>
+                        </div>
+                        `;
+                        campionatoSquadra.appendChild(divCampionatoSquadra);
+                    }
+                });
+            });
+    });
+
+    // funzione per pulire
+    function clearForClass(classe) {
+        let elem = document.getElementsByClassName(classe)
+
+        while (elem.length > 0) {
+            elem[0].parentNode.removeChild(elem[0])
+        }
+    }
+
+</script>

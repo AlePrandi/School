@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 5%;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .card img {
+            border-radius: 5px 5px 0 0;
+            width: 100%;
+        }
+
+        .container {
+            padding: 2px 16px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <form>
+        <label id="labelCocktail" class="labelclass">Cocktail:
+            <input type="text" size="20" id="fCocktail">
+        </label><br>
+        <input type="submit" id="fsubmit" value="Cerca">
+    </form>
+    <div id="dinamico"class="grid-container"></div>
+
+    <script>
+        const invio = document.getElementById("fsubmit");
+        const Cocktail = document.getElementById("fCocktail");
+        const dinamico = document.getElementById("dinamico");
+
+        invio.addEventListener("click", function (e) {
+            e.preventDefault();
+            let url = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + Cocktail.value;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(dati => {
+                    dinamico.innerHTML = ''; // Clear previous results
+                    const datiJson = dati;
+                    console.log(datiJson);
+                    if (datiJson.drinks) {
+                        datiJson.drinks.forEach(element => {
+                            console.log("--", element.strDrink);
+                            let div_cocktail = document.createElement('div');
+                            div_cocktail.innerHTML = `<div class="card"><img src="${element.strDrinkThumb}" alt="Cocktail" style="width:100%"><div class="container"<h4><b>${element.strDrink}</b></h4><p>${element.strInstructionsIT ? element.strInstructionsIT : element.strInstructions}</p></div></div>`;
+                            dinamico.appendChild(div_cocktail);
+                        });
+                    } else {
+                        dinamico.innerHTML = '<p>Cocktail non trovato.</p>';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        });
+    </script>
+</body>
+
+</html>

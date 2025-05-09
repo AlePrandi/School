@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prandi_Campionato_2</title>
+</head>
+
+<body>
+
+    <!-- creo i div e la select in modo dinamico-->
+    <div id="campDin"></div>
+    <select id="selectSquadre"></select><br>
+    <div id="campionatoSquadra"></div><br>
+    <div id="infoSquadra"></div>
+
+</body>
+
+</html>
+
+<script>
+
+    const campDin = document.getElementById("campDin");
+    const selectSquadre = document.getElementById("selectSquadre");
+    const campionatoSquadra = document.getElementById("campionatoSquadra");
+    const infoSquadra = document.getElementById("infoSquadra");
+
+    const urlSquad = "./squadre20_21.json"
+    const urlCamp = "./campionato20_21.json"
+
+    fetch(urlSquad)
+        .then(response => response.json())
+        .then(dati => {
+            const datiJson = dati;
+            console.log(datiJson)
+            const divcampDin = document.createElement('div');
+            divcampDin.innerHTML = `<h1>Campionato: ${datiJson.name}</h1>`;
+            campDin.appendChild(divcampDin);
+
+            if (datiJson.clubs.length > 0) {
+                datiJson.clubs.forEach(riga => {
+                    const option = document.createElement('option');
+                    option.value = riga.name;
+                    option.innerHTML = riga.name;
+                    selectSquadre.appendChild(option);
+                });
+            } else {
+                console.log("Non esistono squadre per questo campionato")
+            }
+        });
+
+    selectSquadre.addEventListener('click', function (e) {
+        e.preventDefault();
+        clearForClass("campionatoSquadra");
+        clearForClass("infoSquadra");
+        let golFatti = 0;
+        let golSubiti = 0;
+        let punti = 0;
+        let squadra = selectSquadre.value;
+        fetch(urlCamp)
+            .then(response => response.json())
+            .then(dati => {
+                const datiJsonCampionato = dati;
+                console.log(datiJsonCampionato)
+
+                datiJsonCampionato.matches.forEach(riga => {
+                    //faccio il controllo sul punteggio per ogni squadra
+                    if (riga.team1 == squadra) {
+                        golFatti += riga.score.ft[0];
+                        golSubiti += riga.score.ft[1];
+                        if (riga.score.ft[0] > riga.score.ft[1]) {
+                            punti += 3;
+                        } else {
+                            if (riga.score.ft[0] == riga.score.ft[1]) {
+                                punti += 1;
+                            } else {
+                                if (riga.score.ft[0] < riga.score.ft[1]) {
+                                    punti += 0;
+                                }
+                            }
+                        }
+                    } else {
+                        if (riga.team2 == squadra) {
+                            // se è nella squadra 2 vanno invertiti i gol fatti e subiti
+                            golFatti += riga.score.ft[1];
+                            golSubiti += riga.score.ft[0];
+                            if (riga.score.ft[1] > riga.score.ft[0]) {
+                                punti += 3;
+                            } else {
+                                if (riga.score.ft[0] == riga.score.ft[1]) {
+                                    punti += 1;
+                                } else {
+                                    if (riga.score.ft[1] < riga.score.ft[0]) {
+                                        punti += 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+                //div child per i gol fatti e subiti
+                const divInfoSquadra = document.createElement('div');
+                divInfoSquadra.innerHTML = `
+                <div class=infoSquadra>
+                    <p>Goal fatti: ${golFatti}<br>
+                        Goal subiti: ${golSubiti}<br>
+                        Punti: ${punti}</p>
+                `;
+                infoSquadra.appendChild(divInfoSquadra);
+            });
+    });
+
+    // funzione per pulire
+    function clearForClass(classe) {
+        let elem = document.getElementsByClassName(classe)
+
+        while (elem.length > 0) {
+            elem[0].parentNode.removeChild(elem[0])
+        }
+    }
+
+</script>

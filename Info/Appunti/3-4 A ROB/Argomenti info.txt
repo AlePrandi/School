@@ -1,0 +1,13 @@
+- Cos'è javascript 
+
+- Tipi Javascript: undefined -> variabili, null, NaN, falsy
+
+- Conversioni di tipi: num + stringa -> diventa stringa, con esercizi
+
+- Differenza tra == e ===
+
+- lei ci dà il codice e noi diciamo l'output 
+
+- variabili locali e globali
+
+- Concetto di Hoisting 

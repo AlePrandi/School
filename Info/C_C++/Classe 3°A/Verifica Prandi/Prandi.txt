@@ -1,0 +1,305 @@
+/*
+autor: Prandi Alessandro
+es. 2
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+#define LUNG 31
+#define DIM 25
+#define GIORNI_MAX 4
+
+typedef struct
+{
+    char nome[LUNG];
+    int punti[DIM];
+    int pTot;
+} Squadra;
+
+void CaricaDati(Squadra s[], int giorni, int n_squad)
+{
+    int n = 0;
+    char nomeFile[LUNG] = "squadre.dat";
+    FILE *fp;
+    fp = fopen(nomeFile, "r");
+    if (fp == NULL)
+    {
+        printf("il file non esiste");
+    }
+    else
+    {
+        while(n < n_squad && fscanf(fp, "%s", &s[n].nome) != EOF)
+        {
+            for(int g = 0; g < giorni; g++)
+            {
+                fscanf(fp,"%d", s[n].punti[g]);
+                s[n].pTot = s[n].pTot + s[n].punti[g];
+            }
+            n++;
+        }
+        fclose(fp);
+    }
+}
+
+void VisDati(Squadra s[], int giorni, int n_squad)
+{
+    int g,squad;
+    for(squad = 0; squad < n_squad; squad++)
+    {
+        printf("%s ", s[squad].nome);
+        for(g = 0; g < giorni; g++)
+        {
+            printf(" %d ", s[squad].punti[g]);
+        }
+        printf("%d ", s[squad].pTot);
+    }
+}
+
+void CercaSquad(Squadra s[], int giorni, int n_squad)
+{
+    char cerca[LUNG];
+    int g_cerc;
+    int n = 0;
+    int tro = -1;
+    printf("inserisci il nome della squadra da cercare: ");
+    fflush(stdin);
+    gets(cerca);
+    while(n < n_squad && tro == -1)
+    {
+        if (strcmp(s[n].nome, cerca) == 0)
+        {
+            tro = n;
+            do
+            {
+                printf(" inserisci la giornata in cui vuoi caricare il punteggio: ");
+                scanf("%d", &g_cerc);
+            }
+            while (g_cerc < 0 || g_cerc > giorni);
+            printf("inserisci il nuovo punteggio: ");
+            scanf("%d", &s[n].punti[g_cerc]);
+        }
+    }
+}
+
+void scambio(Squadra *s1, Squadra *s2){
+    Squadra s3;
+    s3 = *s1;
+    *s1 = *s2;
+    *s2 = s3;
+}
+
+void OrdinaStrutt(Squadra s[], int n_squad){
+int k, sup, sca;
+sup = n_squad - 1;
+while (sup > 0){
+    sca = 0;
+    for(k = 0; k < sup; k++){
+        if(s[k].pTot < s[k + 1].pTot){
+            scambio(&s[k], &s[k + 1]);
+            sca = k;
+        }
+    }
+    sup = sca;
+}
+}
+
+void Classifica(Squadra s[], int giorni, int n_squad)
+{
+    int max[DIM];
+    char smax[DIM][LUNG];
+    FILE *fp;
+    fp = fopen("campionato.dat", "w");
+    fprintf(fp,">>Vincitori della Giornata\n");
+    for(int g = 0; g < giorni; g++)
+    {
+        for(int squad = 0; squad < n_squad; squad++)
+        {
+            if(g == 0 || s[squad].punti[g] > max[g])
+            {
+                max[g] = s[squad].punti[g];
+                strcpy(smax[g],s[squad].nome) ;
+            }
+        }
+        fprintf(fp,"Giornata %d : %s con %d punti\n",g + 1, smax[g], max[g]);
+    }
+    OrdinaStrutt(s, n_squad);
+    fprintf(fp,">>Classifica finale");
+    for(int k = 0; k < n_squad; k++){
+        fprintf(fp,"%s %d", s[k].nome, s[k].pTot);
+        fprintf(fp,"\n");
+    }
+    fclose(fp);
+}
+
+int main()
+{
+    int n_squadre;
+    Squadra Campionato[DIM];
+
+    do{
+      printf("quante squadre partecipano: ");
+    scanf("%d", &n_squadre);
+    }while(n_squadre < 0 || n_squadre > DIM);
+
+
+    CaricaDati(Campionato, GIORNI_MAX, n_squadre);
+    VisDati(Campionato, GIORNI_MAX, n_squadre);
+    CercaSquad(Campionato, GIORNI_MAX, n_squadre);
+    Classifica(Campionato, GIORNI_MAX, n_squadre);
+
+    return 0;
+}
+
+/*
+autor: Prandi Alessandro
+es. 2
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+#define LUNG 31
+#define DIM 25
+#define GIORNI_MAX 4
+
+typedef struct
+{
+    char nome[LUNG];
+    int punti[DIM];
+    int pTot;
+} Squadra;
+
+void CaricaDati(Squadra s[], int giorni, int n_squad)
+{
+    int n = 0;
+    char nomeFile[LUNG] = "squadre.dat";
+    FILE *fp;
+    fp = fopen(nomeFile, "r");
+    if (fp == NULL)
+    {
+        printf("il file non esiste");
+    }
+    else
+    {
+        while(n < n_squad && fscanf(fp, "%s", &s[n].nome) != EOF)
+        {
+            for(int g = 0; g < giorni; g++)
+            {
+                fscanf(fp,"%d", s[n].punti[g]);
+                s[n].pTot = s[n].pTot + s[n].punti[g];
+            }
+            n++;
+        }
+        fclose(fp);
+    }
+}
+
+void VisDati(Squadra s[], int giorni, int n_squad)
+{
+    int g,squad;
+    for(squad = 0; squad < n_squad; squad++)
+    {
+        printf("%s ", s[squad].nome);
+        for(g = 0; g < giorni; g++)
+        {
+            printf(" %d ", s[squad].punti[g]);
+        }
+        printf("%d ", s[squad].pTot);
+    }
+}
+
+void CercaSquad(Squadra s[], int giorni, int n_squad)
+{
+    char cerca[LUNG];
+    int g_cerc;
+    int n = 0;
+    int tro = -1;
+    printf("inserisci il nome della squadra da cercare: ");
+    fflush(stdin);
+    gets(cerca);
+    while(n < n_squad && tro == -1)
+    {
+        if (strcmp(s[n].nome, cerca) == 0)
+        {
+            tro = n;
+            do
+            {
+                printf(" inserisci la giornata in cui vuoi caricare il punteggio: ");
+                scanf("%d", &g_cerc);
+            }
+            while (g_cerc < 0 || g_cerc > giorni);
+            printf("inserisci il nuovo punteggio: ");
+            scanf("%d", &s[n].punti[g_cerc]);
+        }
+    }
+}
+
+void scambio(Squadra *s1, Squadra *s2){
+    Squadra s3;
+    s3 = *s1;
+    *s1 = *s2;
+    *s2 = s3;
+}
+
+void OrdinaStrutt(Squadra s[], int n_squad){
+int k, sup, sca;
+sup = n_squad - 1;
+while (sup > 0){
+    sca = 0;
+    for(k = 0; k < sup; k++){
+        if(s[k].pTot < s[k + 1].pTot){
+            scambio(&s[k], &s[k + 1]);
+            sca = k;
+        }
+    }
+    sup = sca;
+}
+}
+
+void Classifica(Squadra s[], int giorni, int n_squad)
+{
+    int max[DIM];
+    char smax[DIM][LUNG];
+    FILE *fp;
+    fp = fopen("campionato.dat", "w");
+    fprintf(fp,">>Vincitori della Giornata\n");
+    for(int g = 0; g < giorni; g++)
+    {
+        for(int squad = 0; squad < n_squad; squad++)
+        {
+            if(g == 0 || s[squad].punti[g] > max[g])
+            {
+                max[g] = s[squad].punti[g];
+                strcpy(smax[g],s[squad].nome) ;
+            }
+        }
+        fprintf(fp,"Giornata %d : %s con %d punti\n",g + 1, smax[g], max[g]);
+    }
+    OrdinaStrutt(s, n_squad);
+    fprintf(fp,">>Classifica finale");
+    for(int k = 0; k < n_squad; k++){
+        fprintf(fp,"%s %d", s[k].nome, s[k].pTot);
+        fprintf(fp,"\n");
+    }
+    fclose(fp);
+}
+
+int main()
+{
+    int n_squadre;
+    Squadra Campionato[DIM];
+
+    do{
+      printf("quante squadre partecipano: ");
+    scanf("%d", &n_squadre);
+    }while(n_squadre < 0 || n_squadre > DIM);
+
+
+    CaricaDati(Campionato, GIORNI_MAX, n_squadre);
+    VisDati(Campionato, GIORNI_MAX, n_squadre);
+    CercaSquad(Campionato, GIORNI_MAX, n_squadre);
+    Classifica(Campionato, GIORNI_MAX, n_squadre);
+
+    return 0;
+}

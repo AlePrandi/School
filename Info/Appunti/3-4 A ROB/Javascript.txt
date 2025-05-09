@@ -1,0 +1,1 @@
+è un linguaggio di programmazione scritto in single page (un'unica pagina) con tutto il codice

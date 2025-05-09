@@ -1,0 +1,67 @@
+es 10
+SELECT a.Targa
+FROM AUTO a
+WHERE a.Targa NOT IN (
+    SELECT ac.Targa
+    FROM AUTOCONINVOLTE ac
+	JOIN SINISTRI s ON ac.CodS = s.CodS
+	WHERE year(s.DataIncidente) = year(CURRENT_DATE) - 1
+)
+
+es 11
+SELECT s.CodS
+FROM SINISTRI s
+WHERE NOT EXISTS (
+    SELECT 1
+    FROM AUTOCONINVOLTE ac, AUTO a
+    WHERE ac.CodS = s.CodS
+    AND ac.Targa = a.Targa
+    AND a.Cilindrata < 2000
+)
+
+es 12
+SELECT assi.Nome, COUNT(s.CodS) AS NumeroSinistri
+FROM ASSICURAZIONI assi, AUTO a, AUTOCONINVOLTE ac, SINISTRI s
+WHERE assi.CodAss = a.CodAss
+AND a.Targa = ac.Targa
+AND ac.CodS = s.CodS
+GROUP BY assi.CodAss, assi.Nome
+ORDER BY NumeroSinistri DESC
+LIMIT 1
+
+es 13
+CREATE TABLE PERICOLOSE AS
+SELECT s.Localita, COUNT(s.codS) AS NumeroIncidenti, SUM(ac.ImportoDelDanno) AS TotaleDanni
+FROM SINISTRI s, AUTOCONINVOLTE ac
+WHERE s.CodS = ac.CodS
+GROUP BY s.Localita
+HAVING NumeroIncidenti > 5
+ORDER BY TotaleDanni DESC
+
+es 14
+SELECT s.Localita
+FROM SINISTRI s
+UNION
+SELECT p.Residenza
+FROM PROPRIETARI p
+
+es 15
+SELECT DISTINCT s.Localita
+FROM SINISTRI s, PROPRIETARI p
+WHERE s.Località = p.Residenza
+
+es 16
+SELECT DISTINCT s.CodS
+FROM SINISTRI s, AUTOCONINVOLTE ac, AUTO a, PROPRIETARI p
+WHERE s.CodS = ac.CodS
+AND ac.Targa = a.Targa
+AND a.CodF = p.CodF
+AND s.Località = p.Residenza
+
+es 17
+SELECT DISTINCT s.Localita
+FROM SINISTRI s
+WHERE s.Localita NOT IN (
+    SELECT p.Residenza
+    FROM PROPRIETARI p
+)

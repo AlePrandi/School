@@ -1,0 +1,7 @@
+SELECT F.Titolo
+FROM FILM F
+WHERE F.CodFilm NOT IN (
+    SELECT DISTINCT P.CodFilm
+    FROM PROIEZIONI P
+    WHERE P.Incasso > 500
+);

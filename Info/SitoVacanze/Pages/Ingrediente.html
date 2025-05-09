@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styleRicerca.css">
+    <title>Cocktail DB - Ingrediente</title>
+    <link rel="icon" href="../img/Cocktail.png" type="image/png" >
+</head>
+
+<body>
+    <div class="title-container">
+        <a class="Title">
+            <span class="actual-text">CocktailDB</span>
+            <span aria-hidden="true" class="Title-text">CocktailDB</span>
+        </a>
+    </div>
+    <header>
+        <a class="home" href="../index.html"><button class="home">
+                <span class="actual-text">Home</span>
+                <span aria-hidden="true" class="hover-text">Home</span>
+            </button></a>
+        <nav>
+            <ul class="navbar">
+                <li><a href="Nome.html">Nome</a></li>
+                <li><a href="Ingrediente.html">Ingrediente</a></li>
+                <li><a href="Tipo.html">Tipo Cocktail</a></li>
+            </ul>
+        </nav>
+        <a href="Random.html"><button class="Random">Random</button></a>
+        <span class="line"></span>
+    </header>
+
+    <div class="input-container">
+        <div class="input-wrapper">
+            <input class="input-box" id="Ing" type="text" placeholder="Ingrediente.." autocomplete="off">
+            <span class="underline"></span>
+        </div>
+        <button class="submit" id="submitIng">Cerca</button>
+    </div>
+
+    <div id="dinamico" class="grid-container"></div>
+
+</body>
+
+</html>
+
+<script src="../js/scriptIng.js"></script>

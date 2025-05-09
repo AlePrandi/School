@@ -1,0 +1,92 @@
+Info interrogazione
+
+slide:
+DB1_TeoriaBase --> 1-35 !!!!! A MEMORIA !!!!
+SQL --> 18
+
+Domande:
+
+1.Persona1
+	- cos'è un database ?
+	- cos'è il database management system ?
+
+2.Persona2
+	- cos'è la piramide di Anthony (classificazione processi)
+	- cos'è l'integrità del database, com'è garantita (livello campo, tabella) 
+
+3.Persona3
+	- sistema informativo e sistema informatico
+	- cos'è il database management system ?
+
+4.Persona4
+	- limiti degli archivi tradizionali 
+	- struttura degli archivi, dove viene memorizzata e gestita ? (struttura definita a lvl programmazione) nel database invece ? viene definita in se stesso
+	- il database può essere visto in lvl. esterno, fisico e logico ?
+	- cosa sono le viste ?
+
+5.Persona5
+	- integrità referenziale ? proprietà per garantire sicurezza <-- SQL 18
+	- cos'è un archivio ? 
+
+Es.
+- Creare tabella con regex, primary key e foreign key
+- data una targa e un codice di un sinistro, andare a cambiare mettendo che è stato rimborsato oggi
+- per tutti gli incidenti dell'anno scorso mettere che sono stati rimborsati oggi
+- cancellare tutti gli importi rimborsati oggi
+
+DDL <-- es. interfaccia DB browser oppure la CREATE
+DCL <-- garantire permessi
+
+Architettura 3 livelli:
+- esterno <-- usato dagli utenti finali <-- il DBA (admin) fornisce VISTE diverse a persone diverse 
+- logico o concettuale <-- definizione delle strutture DDL
+- fisico <-- livello più basso a livello File System e si usa il DMCL
+
+DBMS 
+permette separazione fisica e logica
+se cambio uno non deve cambiare l'altro 
+
+-------------------------------
+
+Architettura Stand-alone 
+
+Stand alone mette a disposizione un file database che può girare offline es. SQLITE
+Non sono necessari Server, Connessione, Desktop
+
+Architettura Terminal-server
+
+un terminale centrale in grado di elaborare con interfacce separate.
+è più sicuro in quanto c'è un solo server centrale in grado di elaborare
+
+Architettura Client-Server
+
+tutti computer quasi uguali in cui un pc funziona da Server e fornisce servizi ai Client
+anche i Client hanno una capacità elaborativa
+deve essere garantita la condivisione dei dati
+più distribuita e flessibile ma più complessa
+
+
+
+Transazioni
+
+insieme di operazione che vanno eseguite in modo atomico, fatte come una sola (o tutte o nessuna)
+sono implicite altrimenti vanno dichiarate dal programmatore.
+
+- istruzione rollback annulla operazione precedenti
+- altrimenti fa la commit e conferma
+
+sono svolte TUTTE tra un begin e un end 	<-- atomicità del DB 
+
+es. trasferimento denaro o prenotazione posto 
+
+Il DB deve garantire le seguenti proprietà:  (ACID)
+
+- Atomicità
+- Consistenza <-- il DB deve essere consistente dall'inizio alla fine
+- Isolamento <-- in caso di varie transazioni una sola può modificare i dati, se una fallisce le altre non devono per forza fallire
+- Durabilità <-- una volta eseguito il commit le modifiche devono rimanere
+
+Transaction Log <-- è un file in cui c'è situa prima della modifica, dato aggiornato e chi l'ha richiesto
+se avviene la commit solo allora si eseguono le write e le read, se avviene l'aborted vengono eliminate
+
+è un checkpoint  

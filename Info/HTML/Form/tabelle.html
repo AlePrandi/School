@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tebelle</title>
+</head>
+<style>
+    h2{
+        text-align: center;
+    }
+    table {
+    border-collapse:collapse
+    }
+    td, th {
+    border:1px solid #ddd;
+    padding:8px;
+    }
+    p{
+        font-size: 140%;
+    }
+    ul{
+        text-align: center;
+    }
+    table{
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+    .testo1{
+        text-align: center;
+    }
+    .colonna{
+        width: 100%;
+    }
+    
+</style>
+<header>
+    <h2>Esempio di uso di tabelle</h2>
+</header>
+<body>
+    <p>esempio di tabella:</p>
+    <table>
+        <tr><td>Riga 1 - Colonna 1</td><td>Una tabella può contenere qualsiasi cosa. Questa che segue è una lista. 
+            <ul style="list-style-type: circle">
+                <li>elemento 1</li>
+                <li>elemento 2</li>
+            </ul></td></tr>
+        <tr><td>La tabella può contenere altre tabelle: 
+            <table>
+                <tr><td>seconda tabella elem. (1,1)</td><td>seconda tabella elem. (1,2)</td></tr>
+            </table>
+        </td><td>La tabella può contenere immagini <img src="Immagini/dragon.gif"> questa è un'immagine GIF animato, il cui colore di sfondo è il trasparente e il file si chiama Dragon.gif.</td></tr>
+    </table>
+    <p>i bordi della tabella possono essere invisibili: </p>
+    <table>
+        <tr><td>Riga 1 - Colonna 1: questo è un esempio di tabella i cui bordi sono invisibili </td>
+        <td>Riga 1 - Colonna 2: il testo viene posizionato all'interno di ogni casella, rispettando i mutui rapporti tra le caselle </td></tr>
+        <tr><td>Riga 2 - Colonna 1: questo sistema può essere usato per ottenere effetti di formattazione (allineamenti, incolonnamenti) altrimenti impossibili per un linguaggio che fa uso di marcatori logici e non fisici.</td>
+        <td class="testo1">questo testo è centrato</td></tr>
+    </table>
+    <hr>
+    <p> esempio di tabella con celle unite (non guardare l'allineamento del testo, fai solo corsivo e grassetto e metti la didascalia) 
+    </p>
+    <table>
+        <tr>
+            <th>Alimenti</th>
+            <td>
+                <table>
+                    <tr>
+                        <th>Quantità per giorno (grammi)</th>
+
+                        </tr>
+                    <tr>
+                        <th colspan="2">13-15 anni</th>
+                        <th colspan="2">16-19 anni</th>
+                    </tr>
+                    <tr>
+                        <th>Femmine</th>
+                        <th>Maschi</th>
+                        <th>Femmine</th>
+                        <th>Maschi</th>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+        <tr><td>Latte/yogurt<br>
+            Formaggi<br>
+            Carni/pesci<br>
+            Uova<br>
+            Burro<br>
+            Oli vergini di oliva<br>
+            Pane<br>
+            Patate<br>
+            Pasta/riso/polenta<br>
+            Frutta<br>
+            Zucchero/miele/marmellata/confettura
+            </td>
+            <td class="testo1">400 a<br>50<br>125-150<br>1-2 b<br>10<br>30 c<br>200<br>200<br>100<br>250-300<br>50</td>
+            <td class="testo1">500 a<br>50<br>125-150<br>1-2 b<br>10<br>30 c<br>250<br>250<br>100<br>250-300<br>60</td>
+            <td class="testo1">400 a<br>50<br>150<br>1-2 b<br>10<br>30 c<br>200<br>200<br>100<br>250-300<br>50</td>
+            <td class="testo1">500-600 a<br>50<br>150-175<br>1-2 b<br>10<br>35 c<br>300<br>300<br>100<br>250-300<br>60-70</td>
+        </tr>
+        <tr class="colonna"><td colspan="5">a=millilitri; b=numero di uova a settimana; c=circa 3 cucchiai da tavola</td></tr>
+    </table>
+    
+</body>
+</html>

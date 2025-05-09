@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prandi_Campionato_1</title>
+</head>
+
+<body>
+
+    <!-- creo i il div per il Campionato e la select dinamici-->
+    <div id="campDin"></div>
+    <select id="selectSquadre"></select><br>
+
+</body>
+
+</html>
+
+<script>
+
+    const campDin = document.getElementById("campDin");
+    const selectSquadre = document.getElementById("selectSquadre");
+    
+    const url = "./squadre20_21.json";
+
+    fetch(url)
+        .then(response => response.json())
+        .then(dati => {
+            const datiJson = dati;
+            console.log(datiJson)
+            //cre il div child per il campionato 
+            const divcampDin = document.createElement('div');
+            divcampDin.innerHTML = `<h1>Campionato: ${datiJson.name}</h1>`;
+            campDin.appendChild(divcampDin);
+
+            if (datiJson.clubs.length > 0) {
+                datiJson.clubs.forEach(riga => {
+                    //creo il nuovo div per fare l'append child
+                    const option = document.createElement('option');
+                    option.value = riga.name;
+                    option.innerHTML = riga.name;
+                    selectSquadre.appendChild(option);
+                });
+            } else {
+                console.log("Non esistono squadre per questo campionato")
+            }
+        });
+</script>

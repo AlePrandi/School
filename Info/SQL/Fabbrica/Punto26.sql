@@ -1,0 +1,3 @@
+SELECT DISTINCT codR
+FROM sedeB
+WHERE stipendio < 980

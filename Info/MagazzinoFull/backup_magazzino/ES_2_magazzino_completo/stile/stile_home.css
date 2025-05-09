@@ -1,0 +1,507 @@
+/* Stile Generale */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+
+/* Barra di navigazione */
+.barra-navigazione {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    color: white;
+}
+
+.sezione-sinistra {
+    display: flex;
+    align-items: center;
+}
+
+.bottone-cerca {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.bottone-cerca:hover {
+    background-color: #45a049;
+}
+
+#logo {
+    width: 100px;
+    height: 50px;
+    background-color: red;
+}
+
+.sezione-destra {
+    display: flex;
+    align-items: center;
+}
+
+.bottone-aiuto {
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.bottone-aiuto:hover {
+    background-color: #ffaa00;
+}
+
+/* Contenitore delle card, con layout flexbox */
+.card-container {
+    display: flex;              /* Flexbox per disporre le card in riga */
+    flex-wrap: wrap;            /* Le card vanno a capo se non c'è spazio */
+    gap: 20px;                  /* Spaziatura tra le card */
+    justify-content: flex-start; /* Allinea le card a sinistra */
+    padding: 10px;              /* Spaziatura interna */
+    max-width: 100%;            /* Il contenitore occupa tutta la larghezza disponibile */
+}
+
+/* Stile per ogni singola card */
+.card {
+    flex: 1 1 300px;            /* Le card si ridimensionano ma hanno una larghezza minima di 200px */
+    max-width: 340px;           /* Imposto una larghezza massima */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombra per dare effetto di profondità */
+    border: 1px solid #ddd;     /* Bordo sottile */
+    border-radius: 8px;         /* Bordo arrotondato */
+    padding: 16px;              /* Spaziatura interna */
+    background-color: white;    /* Sfondo bianco */
+}
+
+/* Stile dei paragrafi all'interno della card */
+.card p {
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #000000;
+}
+  
+.card p.small {
+    font-size: 14px;
+}
+
+/* Stile per il corner della freccia */
+.go-corner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    overflow: hidden;
+    top: 0;
+    right: 0;
+    background-color: #00838d;
+    border-radius: 0 4px 0 32px;
+}
+
+/* Stile per la freccia */
+.go-arrow {
+    margin-top: -4px;
+    margin-right: -4px;
+    color: white;
+    font-family: courier, sans;
+}
+
+/* Stile del link/card */
+.card1 {
+    display: block;
+    position: relative;
+    max-width: 262px;
+    background-color: #f2f8f9;
+    border-radius: 4px;
+    padding: 32px 24px;
+    margin: 12px;
+    text-decoration: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Effetti al passaggio del mouse */
+.card1:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: -16px;
+    right: -16px;
+    background: #00838d;
+    height: 32px;
+    width: 32px;
+    border-radius: 32px;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    transition: transform 0.25s ease-out;
+}
+
+.card1:hover:before {
+    transform: scale(23);
+}
+
+.card1:hover p {
+    transition: all 0.3s ease-out;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.card1:hover h3 {
+    transition: all 0.3s ease-out;
+    color: #fff;
+}
+
+
+#datiProd {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0;
+}
+
+
+
+/* Stile generico per le card */
+.card-large-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 20px;
+}
+
+.card-large {
+    width: 100%;
+    padding: 20px;
+    border-bottom: 2px solid #eaeaea;
+}
+
+.section-title {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    color: #1e3a8a;
+    margin-top: 30px; /* Margine superiore per separare i titoli */
+    margin-bottom: 15px; /* Margine inferiore per separare dal contenuto */
+}
+
+.title-large {
+    display: block;
+    font-size: 24px;
+    color: #1e3a8a;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.steps-large {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.step-large {
+    width: 48%; /* Due colonne */
+    margin-bottom: 40px; /* Aumentata la distanza tra le sezioni */
+}
+
+.step-large span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 20px; /* Aumentato ulteriormente il margine inferiore */
+    color: #1e3a8a;
+}
+
+.details {
+    padding: 20px; /* Aumentato ulteriormente il padding */
+    background-color: #f0f9ff;
+    border-radius: 8px;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.details span {
+    display: inline-block;
+    margin-bottom: 15px; /* Aumentato il margine tra le caratteristiche */
+    font-size: 14px;
+    color: #333;
+}
+
+.payments-large {
+    width: 100%;
+    margin-top: 40px; /* Aumentata la distanza sopra la sezione dei pagamenti */
+}
+
+.checkout-large {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.footer-large {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.price-large {
+    font-size: 24px;
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.checkout-btn {
+    padding: 10px 20px;
+    background-color: #1e3a8a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+.checkout-btn:hover {
+    background-color: #16357a;
+}
+
+@media (max-width: 768px) {
+    .steps-large {
+        flex-direction: column;
+    }
+
+    .step-large {
+        width: 100%;
+    }
+
+    .checkout-large {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .checkout-btn {
+        margin-top: 10px;
+    }
+}
+
+
+
+
+
+
+
+.contenitore-principale {
+    display: flex;
+    align-items: stretch; /* Assicura che i figli (sezione di ricerca e card) si estendano in altezza */
+    padding: 10px;
+    height: 100%; /* Imposta l'altezza al 100% */
+}
+
+/* Nuova sezione di ricerca */
+:root {
+--border-height: 1px;
+--border-before-color: rgba(0, 0, 0, 0.3);
+--border-after-color: #00838d;
+}
+
+.input {
+color: #000; /* Cambiato a nero per visibilità */
+font-size: 0.9rem;
+background-color: transparent;
+width: 100%;
+box-sizing: border-box;
+padding-inline: 0.5em;
+padding-block: 0.7em;
+border: none;
+border-bottom: var(--border-height) solid var(--border-before-color);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+background: #fff; /* Sfondo bianco per leggibilità */
+}
+
+.input-border {
+position: absolute;
+background: var(--border-after-color);
+width: 0%;
+height: 2px;
+bottom: 0;
+left: 0;
+transition: width 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.input:focus {
+outline: none;
+}
+
+.input:focus + .input-border {
+width: 100%;
+}
+
+.sezione-ricerca {
+    position: relative;
+    --width-of-input: 300px;
+    margin-bottom: 15px; /* Distanza tra gli input */
+    width: var(--width-of-input);
+}
+.sezione-ricerca-principale{
+    width: 300px; /* Larghezza fissa per la sezione di ricerca */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-right: 1px solid #ddd;
+    display: none; /* Inizialmente nascosta */
+    height: 100%; /* Altezza al 100% */
+}
+
+:root {
+    --border-height: 1px;
+    --border-before-color: rgba(0, 0, 0, 0.3);
+    --border-after-color: #00838d;
+}
+
+.select-reparto {
+    color: #000; /* Testo nero per visibilità */
+    font-size: 0.9rem;
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+    border-bottom: var(--border-height) solid var(--border-before-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: #fff; /* Sfondo bianco per leggibilità */
+    appearance: none; /* Rimuove lo stile nativo del browser */
+    -webkit-appearance: none; /* Compatibilità Safari */
+}
+
+.select-border {
+    position: absolute;
+    background: var(--border-after-color);
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.select-reparto:focus {
+    outline: none;
+}
+
+.select-reparto:focus + .select-border {
+    width: 100%;
+}
+
+#select-container {
+    position: relative;
+    --width-of-select: 300px;
+    margin-bottom: 15px; /* Distanza tra le select */
+    width: var(--width-of-select);
+}
+
+/* Aggiunge una freccia personalizzata alla select */
+#select-container::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--border-before-color); /* Colore della freccia */
+}
+#cerca {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 1px solid #4f4f4f;
+    border-radius: 4px;
+    transition: all 0.2s ease-in;
+    position: relative;
+    overflow: hidden;
+    font-size: 19px;
+    cursor: pointer;
+    color: black;
+    z-index: 1;
+}
+
+#cerca:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.25);
+    top: 100%;
+    width: 140%;
+    height: 180%;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+#cerca:after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.45);
+    top: 180%;
+    width: 160%;
+    height: 190%;
+    background-color: #00838d;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+#cerca:hover {
+    color: #ffffff;
+    border: 1px solid #00838d;
+}
+
+#cerca:hover:before {
+    top: -35%;
+    background-color: #00838d;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+#cerca:hover:after {
+    top: -45%;
+    background-color: #00838d;
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+/* Contenitore delle card */
+.card-container {
+    flex: 1; /* Si espande per riempire lo spazio restante */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px;
+}
+
+/* Visualizzare la sezione di ricerca */
+.bottone-cerca.attiva + .contenitore-principale .sezione-ricerca {
+    display: block;
+}
+
+/* Ridimensiona il contenitore delle card quando la sezione di ricerca è visibile */
+.bottone-cerca.attiva + .contenitore-principale .card-container {
+    flex: 0 0 calc(100% - 320px); /* Sottrae la larghezza della sezione di ricerca */
+}

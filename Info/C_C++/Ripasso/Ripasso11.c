@@ -1,0 +1,49 @@
+/*
+author: Prandi Alessandro
+date:
+es.
+testo
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX 10
+
+void scambio(int *n1, int *n2) {
+    int z;
+    z = *n1;
+    *n1 = *n2;
+    *n2 = z;
+}
+
+void Crescenti(int vett[], int n) {
+    int sup,sca;
+    sup= n-1 ;
+    while ( sup>0 ) {
+        sca=0 ;
+        for (int k = 0; k < sup ; k++) {
+            if (vett[ k ] > vett[ k+1 ]) {
+                scambio(&vett[ k ],&vett[ k+1 ]);
+                sca=k ;
+            }
+        }
+        sup=sca ;
+    }
+}
+
+int main() {
+    int vett[MAX],dim;
+    printf("quanti numeri vuoi ordinare: ");
+    scanf("%d", &dim);
+    for(int j = 0; j < dim;j++){
+        printf("inserisci un numero: ");
+        scanf("%d", &vett[j]);
+    }
+    Crescenti(vett,dim);
+    printf("numeri ordinati:");
+        for(int j = 0; j < dim;j++){
+        printf(" %d", vett[j]);
+    }
+
+    return 0;
+}

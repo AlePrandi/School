@@ -1,0 +1,99 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Barra di navigazione */
+.barra-navigazione {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px 20px;
+    color: white;
+}
+
+/* Stile per la sezione sinistra con il bottone "Cerca" */
+.sezione-sinistra {
+    display: flex;
+    align-items: center;
+}
+
+.bottone-cerca {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.bottone-cerca:hover {
+    background-color: #45a049;
+}
+
+/* Stile del logo (rettangolo centrale) */
+#logo {
+    width: 100px;
+    height: 50px;
+    background-color: red;
+}
+
+/* Stile per la sezione destra con il bottone "Help" */
+.sezione-destra {
+    display: flex;
+    align-items: center;
+}
+
+.bottone-home {
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+.centro-assistenza {
+    padding: 40px;
+    text-align: center;
+    background-color: #fff;
+}
+
+.centro-assistenza h1 {
+    color: #333;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.centro-assistenza p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.centro-assistenza ul {
+    list-style: none;
+    padding: 0;
+}
+
+.centro-assistenza ul li {
+    margin-bottom: 15px;
+}
+
+.centro-assistenza ul li a {
+    color: #4CAF50;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.centro-assistenza ul li a:hover {
+    text-decoration: underline;
+}
+
+

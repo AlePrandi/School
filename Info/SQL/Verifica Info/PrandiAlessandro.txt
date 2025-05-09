@@ -1,0 +1,64 @@
+CREATE TABLE "cachet" (
+	"person_id"	INTEGER,
+	"movie_id"	INTEGER,
+	"character_name"  VARCHAR(30), 
+	"guadagno"  DECIMAL(10), 
+	FOREIGN KEY ("person_id") REFERENCES movie_cast ("person_id") ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY ("movie_id") REFERENCES movie ("movie_id") ON UPDATE CASCADE ON DELETE RESTRICT,
+	FOREIGN KEY ("character_name") REFERENCES movie_cast ("character_name") ON UPDATE CASCADE ON DELETE RESTRICT
+);
+
+
+INSERT INTO cachet (person_id,movie_id, character_name, guadagno) VALUES 
+(1, 3, "the rock", 900000),
+(6, 4, "Harry Potter", 120000),
+(7, 11, "Iron man", 336000)
+
+
+SELECT m.title, m.release_date, m.revenue, m.vote_average
+FROM country as c, production_country AS pc, movie AS m
+WHERE c.country_id = pc.country_id
+AND pc.movie_id = m.movie_id
+AND c.country_name LIKE "%Kaza%"
+
+
+-- data 2003 a 2005
+SELECT p.person_name, mc.character_name
+FROM movie as m, movie_cast as mc, person as p
+WHERE m.movie_id = mc.movie_id
+AND mc.person_id = p.person_id
+AND m.overview LIKE "%vampire%"
+AND strftime("%Y", m.release_date) BETWEEN "2003" AND "2005"
+
+
+SELECT p.person_name, mc.character_name,m.title
+FROM movie as m, movie_cast as mc, person as p, gender as g
+WHERE m.movie_id = mc.movie_id
+AND mc.person_id = p.person_id
+AND g.gender_id = mc.gender_id
+AND g.gender LIKE "%Female%"
+
+
+SELECT pc.company_name, sum(m.budget) as budget
+FROM movie_company as mc, production_company as pc, movie as m
+WHERE mc.movie_id = m.movie_id
+AND mc.company_id = pc.company_id
+GROUP BY pc.company_id
+
+
+SELECT p.person_name,count(mc.person_id) AS presenze
+FROM movie AS m, movie_cast as mc, person AS p
+WHERE mc.movie_id = m.movie_id
+AND mc.person_id = p.person_id
+AND m.title LIKE "%Pirates of the Caribbean%"
+GROUP BY mc.person_id
+HAVING presenze > 1
+ORDER BY presenze DESC
+
+
+SELECT g.genre_name, sum(m.vote_count) as somma_voti
+FROM movie AS m, movie_genres as mg, genre as g
+WHERE mg.movie_id = m.movie_id
+AND mg.genre_id = g.genre_id
+GROUP BY g.genre_name
+ORDER BY somma_voti DESC

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <select id="select_provincia" name="select_provincia">
+        <!-- <option value="Torino">Torino</option>-->
+    </select>
+
+    <script>
+        /*********
+         utilizzo il webserver di VSC 
+         **********/
+
+        let url = "./comuni.json" //url che punta al json... può essere anche un url sul web
+        let select_provincia = document.getElementById("select_provincia")
+        let abitanti_provincia = 0
+        let numero_comuni = 0
+        let nome_comune
+        let max_popolazione = 0
+        let max_nome
+
+        fetch(url)
+            .then(response => response.json()) //richiamo la funzione json
+            .then(dati => {
+                const datiJson = dati
+                console.log(datiJson) //stampo l'oggetto creato dall'importazione del json
+
+                //console.log("regione nome = " + datiJson.provincia.nome)
+
+                datiJson.forEach(riga => { //scorro l'array di oggetti presente in provincia
+                    //console.log(riga.provincia.nome)
+                    if (riga.provincia.nome == "Cuneo" ) {
+                        nome_comune = riga.provincia.nome
+                        console.log("--" + riga.nome)
+                        numero_comuni += 1
+                        abitanti_provincia = abitanti_provincia + riga.popolazione
+                        if(riga.popolazione > max_popolazione){
+                            max_popolazione = riga.popolazione
+                            max_nome = riga.nome
+                        }
+                    }
+                    
+                    /*
+                    if (riga.comuni.length > 0) {
+                        riga.comuni.forEach(dati_comune => { //scorro l'array di oggetti presente in comuni
+                            console.log("---- " + dati_comune.comune_nome + " " + dati_comune.cap)
+    
+                            createOptionProvincia(riga.provincia_nome + " " + dati_comune.comune_nome + " " + dati_comune.cap)
+                        })
+    
+                    }
+                    */
+                })
+                console.log("persone nella provincia di "+ nome_comune + ": " + abitanti_provincia)
+                console.log("numero di comuni: " + numero_comuni)
+                console.log("Provincia con più abitanti: " + max_nome + " con " + max_popolazione + " persone")
+            })
+
+        function createOptionProvincia(valore) {
+            select_provincia.insertAdjacentHTML('beforeend', '<option value="' + valore + '">' + valore + '</option>')
+        }
+
+        select_provincia.addEventListener("change", function (e) {
+            console.log(e.target.value) //stampa in console il valore selezionato
+
+
+        })
+
+        /*********************************
+        Sintassi per scorrere una lista di oggetti
+        Si usa Object.keys
+
+        Object.keys(datiJson.provincia).forEach(key => {
+            console.log(key)
+        })
+        *********************************/
+    </script>
+</body>
+
+</html>

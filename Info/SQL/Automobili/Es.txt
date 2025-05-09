@@ -1,0 +1,95 @@
+es 1
+SELECT Targa, Marca
+FROM AUTO
+WHERE Cilindrata > 2000 OR Potenza > 120
+
+es 2
+SELECT p.Nome, a.Targa
+FROM AUTO a, PROPRIETARI p
+WHERE a.CodF = p.CodF
+  AND (a.Cilindrata > 2000 OR a.Potenza > 120)
+
+
+es 3
+SELECT a.Targa, p.Nome
+FROM AUTO a, PROPRIETARI p, ASSICURAZIONI assi
+WHERE a.CodF = p.CodF
+  AND a.CodAss = assi.CodAss
+  AND (a.Cilindrata > 2000 OR a.Potenza > 120)
+  AND assi.Nome = 'SARA'
+
+
+es 4
+SELECT a.Targa, p.Nome
+FROM AUTO a, PROPRIETARI p, ASSICURAZIONI assi, AUTOCONINVOLTE ac, SINISTRI s
+WHERE a.CodF = p.CodF
+  AND a.CodAss = assi.CodAss
+  AND a.Targa = ac.Targa
+  AND ac.CodS = s.CodS
+  AND assi.Nome = 'SARA'
+  AND s.DataIncidente = '2002-01-20'
+
+
+es 5
+SELECT assi.Nome, assi.Sede, COUNT(a.Targa) AS NumeroAuto
+FROM ASSICURAZIONI assi, AUTO a
+WHERE assi.CodAss = a.CodAss
+GROUP BY assi.Nome, assi.Sede
+
+es 7
+SELECT a.Targa, COUNT(ac.CodS) AS NumeroSinistri
+FROM AUTO a, AUTOCONINVOLTE ac
+WHERE a.Targa = ac.Targa
+  AND a.Marca = 'Fiat'
+GROUP BY a.Targa
+
+es 8
+SELECT a.Targa, assi.Nome AS NomeAssicurazione, SUM(ac.ImportoDelDanno) AS TotaleDanni
+FROM AUTO a, ASSICURAZIONI assi, AUTOCONINVOLTE ac
+WHERE a.CodAss = assi.CodAss
+  AND a.Targa = ac.Targa
+GROUP BY a.Targa, assi.Nome
+HAVING COUNT(ac.CodS) > 1
+ORDER BY COUNT(ac.CodS) DESC
+
+es 9
+CREATE VIEW RICCHI AS
+SELECT p.CodF, p.Nome, SUM(ac.ImportoDelDanno) AS TotaleDanni
+FROM PROPRIETARI p, AUTO a, AUTOCONINVOLTE c
+WHERE p.CodF = a.CodF
+  AND a.Targa = ac.Targa
+  AND ac.DataRimborso IS NOT NULL
+GROUP BY p.CodF, p.Nome
+HAVING COUNT(a.Targa) > 1
+ORDER BY p.Nome
+
+
+es 13
+CREATE TABLE PERICOLOSE AS
+SELECT s.Località, COUNT(s.CodS) AS NumeroIncidenti, SUM(ac.ImportoDelDanno) AS TotaleDanni
+FROM SINISTRI s, AUTOCONINVOLTE ac
+WHERE s.CodS = ac.CodS
+GROUP BY s.Località
+HAVING NumeroIncidenti > 5
+ORDER BY TotaleDanni DESC
+
+es 14 
+SELECT SINISTRI.localita AS localita
+FROM SINISTRI 
+UNION 
+SELECT PROPRIETARI.residenza AS localita
+FROM PROPRIETARI 
+
+es 15
+SELECT DISTINCT s.Località
+FROM SINISTRI s, PROPRIETARI p
+WHERE s.Località = p.Residenza
+
+
+es 16
+SELECT DISTINCT s.CodS
+FROM SINISTRI s, AUTOCONINVOLTE ac, AUTO a, PROPRIETARI p
+WHERE s.CodS = ac.CodS
+  AND ac.Targa = a.Targa
+  AND a.CodF = p.CodF
+  AND s.Località = p.Residenza

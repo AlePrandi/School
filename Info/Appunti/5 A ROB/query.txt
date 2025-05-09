@@ -1,0 +1,12 @@
+sapere nomi sia dei docenti che degli studenti del corso di informatica
+
+SELECT d.NomeD as Nome
+FROM DOCENTE d 
+WHERE d.dipartimento LIKE "Informatica"
+UNION
+SELECT s.NomeS as Nome
+FROM STUDENTI s, FREQUENTA f, CORSI c, DOCENTE d
+WHERE s.Matricola = f.Matricola
+AND f.CodCorso = c.Corso 
+AND c.CodDocente = d.CodDocente
+AND d.Dipartimento LIKE "informatica"

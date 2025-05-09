@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar con logo e bottoni</title>
+    <link rel="stylesheet" href="./stile/stile_home.css">
+</head>
+<body>
+    <nav class="barra-navigazione">
+        <div class="sezione-sinistra">
+            <button class="bottone-cerca" id="bottone-cerca">Cerca</button>
+            <button class="bottone-cerca" id="nuovoBtn">Nuovo Prodotto</button>
+            <button class="bottone-cerca" id="nuovorepartoBtn">Nuovo Reparto</button>
+        </div>
+        <div id="logo"></div>
+        <div class="sezione-destra">
+            <a href="pagine/assistenza.html" class="bottone-aiuto">Help</a>
+        </div>
+    </nav>
+
+    <div class="contenitore-principale">
+        <!-- Nuova sezione di ricerca, inizialmente nascosta -->
+        <div id="sezione-ricerca-principale" class="sezione-ricerca-principale">
+            <h1>Ricerca Prodotti</h1>
+            <div id="sezione-ricerca" class="sezione-ricerca">
+              <input type="text" id="nome" class="input" placeholder="Cerca un prodotto per nome">
+              <div class="input-border"></div>
+            </div>
+            <div id="sezione-ricerca" class="sezione-ricerca">
+              <input type="text" id="codice" class="input" placeholder="Cerca un prodotto per codice">
+              <div class="input-border"></div>
+            </div>
+            <div id="select-container" class="sezione-ricerca">
+              <select id="reparto" class="select-reparto">
+                  <option value="">Seleziona un reparto</option>
+              </select>
+              <div class="select-border"></div>
+            </div>
+            <div id="sezione-ricerca" class="sezione-ricerca">
+              <input type="text" id="marca" class="input" placeholder="Cerca una marca">
+              <div class="input-border"></div>
+            </div>
+            <div id="sezione-ricerca" class="sezione-ricerca">
+              <input type="text" id="tipo" class="input" placeholder="Cerca un tipo di prodotto">
+              <div class="input-border"></div>
+            </div>
+            <button id="cerca">Cerca</button>
+          </div>
+
+        <div class="card-container"></div>
+        
+    </div>
+    <div id="datiProd"></div>
+
+    <script src="./script/script_home.js"></script>
+</body>
+</html>
