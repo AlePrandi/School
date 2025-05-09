@@ -1,0 +1,177 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10%;
+}
+
+.home {
+  font: bold 130% Arial, sans-serif;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.navbar {
+  list-style: none;
+  font: bold 110% Arial, sans-serif;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar li {
+  font: bold 110% Arial, sans-serif;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.navbar li a {
+  font: bold 110% Arial, sans-serif;
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease 0s;
+}
+
+.navbar li a:hover {
+  font: bold 110% Arial, sans-serif;
+  color: red;
+  text-decoration: none;
+}
+
+button {
+  font: bold 110% Arial, sans-serif;
+  color: black;
+  text-decoration: none;
+  padding: 9px 25px;
+  background-color: rgba(0, 136, 169, 1);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+button:hover {
+  font: bold 110% Arial, sans-serif;
+  color: black;
+  text-decoration: none;
+  background-color: rgba(0, 107, 131, 0.8);
+}
+
+.section1 {
+  background-color: grey;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.section1 img {
+  width: 23%;
+  height: auto;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  margin-left: 2%;
+}
+
+.section1 h2 {
+  width: 40%;
+  font-size: 250%;
+  line-height: 1.5;
+  color: red;
+  text-align: center;
+}
+
+.section1 p {
+  color: white;
+  width: 65%;
+  margin-right: 5%;
+  text-align: justify;
+  background-color: grey;
+  font-size: 150%;
+  line-height: 1.5;
+}
+
+.section1 b {
+  color: white;
+  width: 65%;
+  background-color: grey;
+  font-size: 140%;
+  line-height: 1.5;
+}
+
+.section1 sub {
+  color: white;
+  background-color: grey;
+}
+
+.section2 {
+  background-color: grey;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2%;
+}
+
+.section2 img {
+  width: 40%;
+  height: auto;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  margin-right: 2%;
+  order: 1;
+}
+
+.section2 p {
+  color: white;
+  background-color: grey;
+  margin-left: 4%;
+  text-align: justify;
+  width: 50%;
+  font-size: 150%;
+  line-height: 1.5;
+}
+
+.section2 b {
+  color: white;
+  width: 65%;
+  background-color: grey;
+  font-size: 140%;
+  line-height: 1.5;
+}
+
+#footer {
+  font: bold 155% Arial, sans-serif;
+  text-align: center;
+  color: white;
+  background-color: grey;
+}
+
+#footer p {
+  color: white;
+  background-color: grey;
+  margin-top: 2%;
+}
+
+#footer a:link,
+#footer a:visited {
+  background-color: grey;
+  color: white;
+  text-decoration: none;
+}
+
+#footer a:hover {
+  background-color: grey;
+  color: red;
+}

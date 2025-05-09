@@ -1,0 +1,42 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES2</title>
+</head>
+<body>
+    <form>
+        <label>Inserisci il nome: <input type="text" size="20" id="nome1"></label>
+        <label>Inserisci gli anni: <input type="text" size="20" id ="anni1"></label><br>
+        <label>Inserisci il nome: <input type="text" size="20" id="nome2"></label>
+        <label>Inserisci gli anni: <input type="text" size="20" id ="anni2"></label>
+        <button id="eta">Più vecchio</button>
+    </form>
+    
+</body>
+</html>
+
+<script>
+    const nome1 = document.getElementById("nome1")
+    const anni1 = document.getElementById("anni1")
+    const nome2 = document.getElementById("nome2")
+    const anni2 = document.getElementById("anni2")
+    const bottone_eta = document.getElementById("eta")
+
+    bottone_eta.addEventListener("click", function(e){
+    e.preventDefault();
+    if (anni1.value > anni2.value ){
+        alert(nome1.value + " è il più vecchio")
+        nome1.style.backgroundColor = "blue"
+    }else
+        if(anni1.value == anni2.value){
+            alert("hanno la stessa età")
+        }else{
+            alert(nome2.value + " è il più vecchio")
+            nome2.style.backgroundColor = "blue"
+        }   
+    }
+)
+</script>

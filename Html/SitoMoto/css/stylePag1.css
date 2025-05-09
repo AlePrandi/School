@@ -1,0 +1,158 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10%;
+}
+
+.home {
+  font: bold 130% Arial, sans-serif;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.navbar{
+  list-style: none;
+  font: bold 110% Arial, sans-serif;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar li{
+  font: bold 110% Arial, sans-serif;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.navbar li a{
+  font: bold 110% Arial, sans-serif;
+  color: white;
+  text-decoration: none;
+transition: all 0.3s ease 0s;
+}
+
+.navbar li a:hover{
+  font: bold 110% Arial, sans-serif;
+  color: red;
+  text-decoration: none;
+}
+
+button{
+  font: bold 110% Arial, sans-serif;
+  color: black;
+  text-decoration: none;
+  padding: 9px 25px;
+  background-color: rgba(0,136,169, 1);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+}
+
+button:hover{
+  font: bold 110% Arial, sans-serif;
+  color: black;
+  text-decoration: none;
+  background-color: rgba(0, 107, 131, 0.8);
+}
+.section1 {
+  color: white;
+  background-color: grey;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2%;
+  }
+  .section1 img {
+    width: 40%;
+    height: auto;
+    margin-left: 1%;
+    margin-top: 3%;
+    margin-bottom: 3%;
+  }
+ 
+  .section1 h2 {
+    width: 40%;
+    font-size: 250%;
+    line-height: 1.5;
+    color: red;
+    background-color: grey;
+    text-align: center;
+  }
+
+  .section1 p {
+    color: white;
+    background-color: grey;
+    margin-bottom: 4%;
+    width: 40%;
+    font-size: 150%;
+    line-height: 1.5;
+  }
+  .section1 b {
+    color: white;
+    background-color: grey;
+    width: 40%;
+    font-size: 100%;
+    line-height: 1.5;
+  }
+
+  #sottotitolo{
+    font-size: 150%;
+    line-height: 1.5;
+    color: red;
+    background-color: grey;
+    text-align: center;
+  }
+
+#testo{
+  color: white;
+  background-color: black;
+  float: left;
+  text-decoration: none;
+  text-align: justify;
+  margin-top: 1%;
+  margin-left: 18%;
+    font-size: 150%;
+    line-height: 1.5;
+}
+
+#testo a:link, #testo a:visited{
+  background-color: black;
+    color: white;
+    text-decoration: none;
+}
+#testo a:hover {
+  background-color: black;
+    color: red;
+}
+
+#footer{
+  height: 40px;
+    font: bold 130% Arial, sans-serif;
+    width: 100%;
+    text-align: center;
+    color: white;
+    background-color: grey;    
+}
+
+#footer a:link, #footer a:visited{
+  background-color: grey;
+    color: white;
+    text-decoration: none;
+}
+#footer a:hover {
+  background-color: grey;
+    color: red;
+}

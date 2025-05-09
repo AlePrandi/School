@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES1</title>
+</head>
+<body>
+    <form>
+        <label>Inserisci il primo valore: <input type="text" size="20" id="valore1"></label>
+        <label>Inserisci il secondo valore: <input type="text" size="20" id ="valore2"></label>
+        <button id="calcola">Calcola</button>
+    </form>
+    
+</body>
+</html>
+
+
+<script>
+    const valore1 = document.getElementById("valore1")
+    const valore2 = document.getElementById("valore2")
+    const bottone_calcolo = document.getElementById("calcola")
+
+
+
+    bottone_calcolo.addEventListener("click", function(e){
+    console.log("valore1: " + valore1.value);
+    let somma = 0
+    e.preventDefault();
+    if (valore1.value == "" || valore2.value == ""){
+        alert("operazione non valida")
+        valore1.style.backgroundColor = "red"
+        valore2.style.backgroundColor = "red"
+    }else{
+        valore1.style.backgroundColor = "green"
+        valore2.style.backgroundColor = "green"
+        somma = parseInt(valore1.value) + parseInt(valore2.value)
+        alert("somma = " + somma)
+    }
+})
+
+</script>

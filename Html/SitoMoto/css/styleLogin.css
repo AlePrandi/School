@@ -1,0 +1,152 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+  }
+  
+  header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10%;
+  }
+  
+  .home {
+    font: bold 130% Arial, sans-serif;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    width: fit-content;
+  }
+  
+  .navbar{
+    list-style: none;
+    font: bold 110% Arial, sans-serif;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .navbar li{
+    font: bold 110% Arial, sans-serif;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0px 20px;
+  }
+  
+  .navbar li a{
+    font: bold 110% Arial, sans-serif;
+    color: white;
+    text-decoration: none;
+  transition: all 0.3s ease 0s;
+  }
+  
+  .navbar li a:hover{
+    font: bold 110% Arial, sans-serif;
+    color: red;
+    text-decoration: none;
+  }
+  
+  #button1{
+    font: bold 110% Arial, sans-serif;
+    color: black;
+    text-decoration: none;
+    padding: 9px 25px;
+    background-color: rgba(0,136,169, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+  }
+  
+  #button1:hover{
+    font: bold 110% Arial, sans-serif;
+    color: black;
+    text-decoration: none;
+    background-color: rgba(0, 107, 131, 0.8);
+  }
+
+  form {
+    max-width: 300px;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: white;
+    border-radius: 8px;
+  }
+  
+  h1 {
+    background-color: white;
+    margin: 0 0 30px 0;
+    text-align: center;
+  }
+  
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="url"],
+  textarea,
+  select {
+    border: none;
+    font-size: 16px;
+    height: auto;
+    margin: 0;
+    outline: 0;
+    padding: 15px;
+    width: 100%;
+    background-color: rgb(173, 169, 169);
+    color: black;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03);
+    margin-bottom: 2%;
+  }
+  
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin: 0 4px 8px 0;
+    margin-bottom: 3%;
+  }
+  
+  select {
+    padding: 6px;
+    height: 32px;
+    border-radius: 2px;
+  }
+  
+  #button2 {
+    padding: 20px 42px 20px 42px;
+    color: black;
+    background-color: rgba(0,136,169, 1);
+    font: bold 110% Arial, sans-serif;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 2%;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+  }
+
+  fieldset {
+    background-color: white;
+    border: 1px black;
+    margin-bottom: 2%;
+    border: none;
+  }
+   
+  label {
+    background-color: white;
+    display: block;
+    margin-bottom: 2%;
+  }
+  
+  label.light {
+    font-weight: 300;
+    display: inline;
+  }
+  
