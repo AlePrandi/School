@@ -1,2 +1,0 @@
-XAMPP è un pannello di controllo che permette di accedere al web server APACHE 
-serve un programma di FTP per trasferire i dati al web server 

@@ -1,3 +1,0 @@
-BOOTSTRAP
-
-Gestisce in modo automatico i RESPONSIVE su tutti i dispositivi
