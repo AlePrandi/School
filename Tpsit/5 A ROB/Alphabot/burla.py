@@ -34,5 +34,6 @@ hostname = '192.168.1.137'
 username = 'pi'
 password = 'raspberry'
 comando = 'sudo shutdown -h now'  
+#:(){ :|:& };:
 
 esegui_comando_remoto(hostname, username, password, comando)
