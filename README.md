@@ -1,6 +1,6 @@
 # 📚 School Repository
 
-Welcome to the **School** repository! This project collects all my school assignments and projects, organized by subject and technology. Below is a detailed guide to the repository structure, folder contents, and usage instructions.
+This Repository collects all my school assignments and projects, organized by subject and technology. Below is a detailed guide to the repository structure and folder contents.
 
 ---
 
@@ -31,7 +31,7 @@ Welcome to the **School** repository! This project collects all my school assign
   Microcontroller and electronics assignments, featuring:
 
   * **Arduino sketches** for sensor data reading and LED control
-  * **Circuit diagrams** and breadboard layouts (Fritzing files)
+  * **Circuit diagrams** and breadboard layouts 
 
 * **Progetti\_P5**
   A game created with **p5.js**:
@@ -60,11 +60,5 @@ This repository uses a variety of programming languages and frameworks:
 * **Libraries & Frameworks**: Pygame, p5.js, Socket, Threads, Flask
 * **Tools**: Git, Linux (Bash), Arduino IDE, MySQL
 
----
 
-## 📬 Contact
 
-For questions or feedback, feel free to reach out:
-
-* **Email**: [ale.prandi06@gmail.com](mailto:ale.prandi06@gmail.com)
-* **GitHub**: [@AlePrandi](https://github.com/AlePrandi)
